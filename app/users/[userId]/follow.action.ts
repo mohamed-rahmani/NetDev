@@ -7,6 +7,10 @@ import { revalidatePath } from "next/cache";
 export const followUser = async (userId: string) => {
   const user = await getUser();
 
+  if (!user) {
+    throw new Error("User not found");
+  }
+
   const isFollowing = await prisma.follow.findFirst({
     where: {
       followerId: user.id,

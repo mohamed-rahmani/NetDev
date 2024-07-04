@@ -9,6 +9,10 @@ export const createPost = async (values: WritePostFormValues) => {
   console.log("POST /writePost");
   const user = await getUser();
 
+  if (!user) {
+    throw new Error("User not found");
+  }
+
   const post = prisma.post.create({
     data: {
       content: values.content,

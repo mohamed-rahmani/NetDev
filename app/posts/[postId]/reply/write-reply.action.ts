@@ -13,6 +13,10 @@ export const createReply = async (
   console.log("POST /writeReply");
   const user = await getUser();
 
+  if (!user) {
+    throw new Error("User not found");
+  }
+
   const post = await prisma.post.create({
     data: {
       content: values.content,
