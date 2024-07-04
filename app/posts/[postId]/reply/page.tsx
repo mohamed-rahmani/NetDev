@@ -1,4 +1,3 @@
-import notFound from "@/app/posts/not-found";
 import { WritePostForm } from "@/app/write/WritePostForm";
 import { getAuthSession } from "@/lib/auth";
 import { Post } from "@/src/feature/post/Post";
@@ -14,20 +13,19 @@ export default async function PostReply({
   };
 }) {
   const session = await getAuthSession();
-  console.log(session);
   if (!session) {
-    return notFound();
+    throw new Error("No session");
   }
 
   const user = await getUser();
 
   if (!user) {
-    return notFound();
+    throw new Error("User not found");
   }
 
   const post = await getPost(params.postId, user.id);
   if (!post) {
-    return notFound();
+    throw new Error("Post not found");
   }
 
   return (

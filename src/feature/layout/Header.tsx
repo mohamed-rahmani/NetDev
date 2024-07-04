@@ -8,7 +8,9 @@ export const Header = async () => {
   return (
     <header className="border-b border-b-accent fixed top-0 z-20 bg-background w-full">
       <div className="container flex items-center max-w-lg py-2 m-auto gap-1">
-        <h2 className="text-2xl font-bold mr-auto">DevNet</h2>
+        <h2 className="text-2xl font-bold mr-auto flex">
+          <p className="dark:text-blue-500 text-blue-700">Net</p>Dev
+        </h2>
         <ThemeToggle />
         {session?.user ? <UserProfile /> : <LoginButton />}
       </div>

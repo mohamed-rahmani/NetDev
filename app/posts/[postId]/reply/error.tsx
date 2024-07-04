@@ -3,6 +3,7 @@
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { LoginButton } from "@/src/feature/layout/auth/LoginButton";
 import { CircleAlert } from "lucide-react";
+import Link from "next/link";
 import { useEffect } from "react";
 
 export default function Error({
@@ -20,11 +21,18 @@ export default function Error({
   return (
     <Alert className="my-8 dark:bg-red-700 bg-red-400">
       <CircleAlert />
-      <AlertTitle>Not logged</AlertTitle>
+      <AlertTitle>{error.message}</AlertTitle>
       <AlertDescription className="mb-2">
-        You must be logged to create a post.
+        {error.message == "No session" && "You must be logged to reply a post."}
+        {error.message == "User not found" &&
+          "You must be logged to reply a post."}
+        {error.message == "Post found" && "This post doesn't exist."}
       </AlertDescription>
-      <LoginButton />
+      {error.message == "No session" || "User not found" ? (
+        <LoginButton />
+      ) : (
+        <Link href="/">Go home</Link>
+      )}
     </Alert>
   );
 }
