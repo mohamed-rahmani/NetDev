@@ -1,14 +1,19 @@
 import { WriteModal } from "@/app/@modal/(.)write/WriteModal";
 import { createReply } from "@/app/posts/[postId]/reply/write-reply.action";
 import { getUser } from "@/src/query/user.query";
+import NotFound from "./not-found";
 
 export default async function Page({ params }: { params: { postId: string } }) {
   const user = await getUser();
 
   if (!user) {
-    throw new Error("User not found");
+    return (
+      <NotFound
+        errorTitle="User not found"
+        errorMessage="You must be logged to post a reply."
+      />
+    );
   }
-
   return (
     <WriteModal
       path="reply"

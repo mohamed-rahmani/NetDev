@@ -3,6 +3,7 @@ import { getAuthSession } from "@/lib/auth";
 import { Post } from "@/src/feature/post/Post";
 import { getPost } from "@/src/query/post.query";
 import { getUser } from "@/src/query/user.query";
+import NotFound from "./not-found";
 import { createReply } from "./write-reply.action";
 
 export default async function PostReply({
@@ -14,18 +15,33 @@ export default async function PostReply({
 }) {
   const session = await getAuthSession();
   if (!session) {
-    throw new Error("No session");
+    return (
+      <NotFound
+        errorTitle="User not found"
+        errorMessage="You must be logged to post a reply."
+      />
+    );
   }
 
   const user = await getUser();
 
   if (!user) {
-    throw new Error("User not found");
+    return (
+      <NotFound
+        errorTitle="User not found"
+        errorMessage="You must be logged to post a reply."
+      />
+    );
   }
 
   const post = await getPost(params.postId, user.id);
   if (!post) {
-    throw new Error("Post not found");
+    return (
+      <NotFound
+        errorTitle="Post not found"
+        errorMessage="This post doesn't exist."
+      />
+    );
   }
 
   return (

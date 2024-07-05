@@ -1,4 +1,4 @@
-import notFound from "@/app/posts/not-found";
+import notFound from "@/app/posts/[postId]/reply/not-found";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { formatDate } from "@/lib/date";
 import { PostHome } from "@/src/query/post.query";
