@@ -1,4 +1,4 @@
-import notFound from "@/app/posts/[postId]/reply/not-found";
+import NotFound from "@/app/posts/[postId]/reply/not-found";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { formatDate } from "@/lib/date";
 import { PostHome } from "@/src/query/post.query";
@@ -22,7 +22,12 @@ export const PostLayout = ({
   children,
 }: PostLayoutProps) => {
   if (!user) {
-    return notFound();
+    return (
+      <NotFound
+        errorTitle="User not found"
+        errorMessage="This post is not found"
+      />
+    );
   }
 
   return (
