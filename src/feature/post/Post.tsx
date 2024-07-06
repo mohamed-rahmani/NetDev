@@ -1,3 +1,5 @@
+"use client";
+
 import { buttonVariants } from "@/components/ui/button";
 import { PostHome } from "@/src/query/post.query";
 import clsx from "clsx";
@@ -11,7 +13,7 @@ type PostProps = {
   className?: string;
 };
 
-export const Post = async ({ post, className }: PostProps) => {
+export const Post = ({ post, className }: PostProps) => {
   return (
     <PostLayout
       user={post.user}
@@ -29,14 +31,14 @@ export const Post = async ({ post, className }: PostProps) => {
           <MessageCircle size={20} />
         </Link>
       </div>
-      <div>
+      <div className="flex items-center">
         <Link
           className="text-muted-foreground text-sm"
           href={`/posts/${post.id}`}
         >
           {post._count.likes} likes
         </Link>
-        {" ⸱ "}
+        <p className="px-1">⸱</p>
         <Link
           className="text-muted-foreground text-sm"
           href={`/posts/${post.id}`}
