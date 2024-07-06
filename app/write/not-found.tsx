@@ -14,8 +14,8 @@ export default function NotFound() {
       open={pathname?.includes("write")}
       onOpenChange={() => router.back()}
     >
-      <DialogContent aria-describedby={"create post"}>
-        <DialogTitle>Create Post</DialogTitle>
+      <DialogContent aria-describedby="create post">
+        <DialogTitle aria-describedby="create post">Create Post</DialogTitle>
         <Alert className="my-8 dark:bg-red-700 bg-red-400">
           <CircleAlert />
           <AlertTitle>Not logged</AlertTitle>

@@ -17,8 +17,8 @@ export default async function PostReply({
   if (!session) {
     return (
       <NotFound
-        errorTitle="User not found"
-        errorMessage="You must be logged to post a reply."
+        errorTitle="Not logged"
+        errorMessage="No problem you can login right here 👇"
       />
     );
   }
@@ -28,8 +28,8 @@ export default async function PostReply({
   if (!user) {
     return (
       <NotFound
-        errorTitle="User not found"
-        errorMessage="You must be logged to post a reply."
+        errorTitle="Not logged"
+        errorMessage="No problem you can login right here 👇"
       />
     );
   }

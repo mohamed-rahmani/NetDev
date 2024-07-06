@@ -13,7 +13,7 @@ import { DropdownMenuItemLogout } from "./LogoutButton";
 export const UserProfile = async () => {
   const session = await getAuthSession();
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <Button size="sm" variant="outline">
           {session?.user.name ?? ""}
