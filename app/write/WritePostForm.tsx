@@ -45,7 +45,7 @@ export const WritePostForm = ({ user, onSubmit }: WritePostFormpProps) => {
           name="content"
           render={({ field }) => (
             <FormItem>
-              <ContentTextArea {...field} />
+              <ContentTextArea placeholder="Eh...What's up Doc" {...field} />
               <FormMessage />
             </FormItem>
           )}
