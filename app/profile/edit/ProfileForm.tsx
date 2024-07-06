@@ -25,7 +25,7 @@ const FormScheme = z.object({
     .max(50)
 
     .regex(
-      /^(https?:\/\/)?([\w-]+\.)+[\w-]{2,}(\/[\w \.-]*)*\/?(\?\w+=\w+(&\w+=\w+)*)?$/,
+      /^(https?:\/\/)?([\w-]+\.)+[\w-]{2,}(\/[\w \.-]*)*\/?(\?\w+=\w+(&\w+=\w+)*)?$|^$/,
       {
         message: "Please enter a valid domain",
       }
@@ -84,7 +84,7 @@ export const ProfileForm = ({ onSubmit, user }: ProfileFormProps) => {
         name="username"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>username</FormLabel>
+            <FormLabel>Username</FormLabel>
             <FormControl>
               <Input placeholder="Wayne" {...field} />
             </FormControl>

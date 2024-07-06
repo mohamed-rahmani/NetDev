@@ -1,4 +1,5 @@
-import { Button } from "@/components/ui/button";
+import NotFound from "@/app/posts/[postId]/reply/not-found";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,12 +13,34 @@ import { DropdownMenuItemLogout } from "./LogoutButton";
 
 export const UserProfile = async () => {
   const session = await getAuthSession();
+  if (!session) {
+    return (
+      <NotFound
+        errorTitle="Not logged"
+        errorMessage="No problem you can login right here 👇"
+      />
+    );
+  }
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
-        <Button size="sm" variant="outline">
-          {session?.user.name ?? ""}
-        </Button>
+        {session?.user.name ? (
+          <Avatar size="default">
+            {session?.user.image ? (
+              <AvatarImage
+                height={10}
+                width={10}
+                src={session?.user.image}
+                alt={session?.user.name}
+              />
+            ) : null}
+            <AvatarFallback>
+              {session?.user.name.slice(0, 2).toUpperCase()}
+            </AvatarFallback>
+          </Avatar>
+        ) : (
+          ""
+        )}
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem asChild>
