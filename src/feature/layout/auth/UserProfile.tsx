@@ -32,6 +32,7 @@ export const UserProfile = async () => {
                 width={10}
                 src={session?.user.image}
                 alt={session?.user.name}
+                className="cursor-pointer"
               />
             ) : null}
             <AvatarFallback>

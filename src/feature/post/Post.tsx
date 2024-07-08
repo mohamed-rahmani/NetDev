@@ -4,6 +4,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { PostHome } from "@/src/query/post.query";
 import clsx from "clsx";
 import { MessageCircle } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { LikeButton } from "./LikeButton";
 import { PostLayout } from "./PostLayout";
@@ -22,6 +23,17 @@ export const Post = ({ post, className }: PostProps) => {
       className={clsx(className)}
     >
       <Link href={`/posts/${post.id}`}>{post.content}</Link>
+      <div className="image">
+        {post.image && (
+          <Image
+            src={post.image}
+            alt={post.content}
+            width={200}
+            height={200}
+            className="object-cover w-auto h-auto rounded-md"
+          />
+        )}
+      </div>
       <div className="flex gap-2 items-center">
         <LikeButton postId={post.id} isLiked={post.likes.length > 0} />
         <Link
@@ -33,14 +45,14 @@ export const Post = ({ post, className }: PostProps) => {
       </div>
       <div className="flex items-center">
         <Link
-          className="text-muted-foreground text-sm"
+          className="text-muted-foreground text-sm dark:text-white"
           href={`/posts/${post.id}`}
         >
           {post._count.likes} likes
         </Link>
         <p className="px-1">⸱</p>
         <Link
-          className="text-muted-foreground text-sm"
+          className="text-muted-foreground text-sm dark:text-white"
           href={`/posts/${post.id}`}
         >
           {post._count.replies} comments
