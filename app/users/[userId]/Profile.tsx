@@ -33,22 +33,24 @@ export const Profile = ({
         <p className="text-muted-foreground">no bio</p>
       )}
       <div className="flex items-center gap-2 mt-4">
-        <div className="flex -space-x-2">
-          {user.followeds.map((f) => (
-            <Avatar
-              size="sm"
-              className="border-2 border-background"
-              key={f.follower.id}
-            >
-              {f.follower.image ? (
-                <AvatarImage src={f.follower.image} alt={f.follower.id} />
-              ) : null}
-              <AvatarFallback>
-                {f.follower.username.slice(0, 2).toUpperCase()}
-              </AvatarFallback>
-            </Avatar>
-          ))}
-        </div>
+        {user.followeds.length > 0 && (
+          <div className="flex -space-x-2">
+            {user.followeds.map((f) => (
+              <Avatar
+                size="sm"
+                className="border-2 border-background"
+                key={f.follower.id}
+              >
+                {f.follower.image ? (
+                  <AvatarImage src={f.follower.image} alt={f.follower.id} />
+                ) : null}
+                <AvatarFallback>
+                  {f.follower.username.slice(0, 2).toUpperCase()}
+                </AvatarFallback>
+              </Avatar>
+            ))}
+          </div>
+        )}
         <p className="text-muted-foreground text-sm">
           {user._count.followeds} followers
         </p>

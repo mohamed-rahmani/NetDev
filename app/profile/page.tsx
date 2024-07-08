@@ -37,8 +37,6 @@ export default async function ProfilePage() {
             <p className="p-4 font-bold">Posts</p>
             <div className="h-1 bg-primary rounded-sm"></div>
           </div>
-          <p className="p-4 font-bold text-muted">Galery</p>
-          <p className="p-4 font-bold text-muted">Groups</p>
         </div>
         {user.posts.map((post) => (
           <Post key={post.id} post={post} />

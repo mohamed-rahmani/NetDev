@@ -16,6 +16,7 @@ export const createPost = async (values: WritePostFormValues) => {
   const post = prisma.post.create({
     data: {
       content: values.content,
+      image: values.image,
       userId: user.id,
     },
   });
