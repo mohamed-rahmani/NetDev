@@ -9,6 +9,12 @@ const prisma = new PrismaClient();
 export const authOptions: AuthOptions = {
   // Configure one or more authentication providers
   adapter: PrismaAdapter(prisma),
+  pages: {
+    signIn: "/register",
+  },
+  theme: {
+    colorScheme: "auto",
+  },
   providers: [
     GithubProvider({
       clientId: env.GITHUB_ID,
