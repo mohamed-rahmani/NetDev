@@ -1,8 +1,8 @@
 import { Footer } from "@/src/feature/layout/Footer";
 import { Header } from "@/src/feature/layout/Header";
+import { ThemeProvider } from "@/src/theme/ThemeProvider";
 import clsx from "clsx";
-import type { Metadata } from "next";
-import { ThemeProvider } from "next-themes";
+import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -20,14 +20,19 @@ type LayoutProps = {
 
 export default function RootLayout({ children, modal }: LayoutProps) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" suppressHydrationWarning>
       <body className={clsx(inter.className, "bg-background")}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <div className="flex flex-col h-full">
             <Header />
-            <div className="flex-1 max-w-lg m-auto py-14 w-full">
+            <main className="flex-1 max-w-lg m-auto py-14 w-full">
               {children}
-            </div>
+            </main>
             <Footer />
           </div>
           {modal}
